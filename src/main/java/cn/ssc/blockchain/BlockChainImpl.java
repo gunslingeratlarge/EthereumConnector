@@ -75,8 +75,8 @@ public class BlockChainImpl implements BlockChain{
     }
 
     @Override
-    public String adminTransfer(String from, String to, BigInteger value) {
-        return null;
+    public String adminTransfer(String from, String to, BigInteger value) throws Exception {
+        return contract.adminTransfer(from,to,value).send().getTransactionHash();
     }
 
     @Override

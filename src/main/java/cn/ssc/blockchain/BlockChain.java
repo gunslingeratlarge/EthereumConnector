@@ -19,7 +19,7 @@ interface BlockChain {
     //token management
     public String adminDeleteTokenFrom(String from, BigInteger value);
     public String adminAddTokenTo(String to, BigInteger value);
-    public String adminTransfer(String from, String to, BigInteger value);
+    public String adminTransfer(String from, String to, BigInteger value) throws Exception;
     public String adminSetBalanceOf(String who, BigInteger value) throws Exception;
 
     //projects
