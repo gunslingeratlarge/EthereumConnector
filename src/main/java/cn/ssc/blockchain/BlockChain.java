@@ -17,10 +17,10 @@ interface BlockChain {
     public BigInteger totalSupply();
 
     //token management
-    public boolean adminDeleteTokenFrom(String from, BigInteger value);
-    public boolean adminAddTokenTo(String to, BigInteger value);
-    public boolean adminTransfer(String from, String to, BigInteger value);
-    public boolean adminSetBalanceOf(String who, BigInteger value);
+    public String adminDeleteTokenFrom(String from, BigInteger value);
+    public String adminAddTokenTo(String to, BigInteger value);
+    public String adminTransfer(String from, String to, BigInteger value);
+    public String adminSetBalanceOf(String who, BigInteger value);
 
     //projects
     public String publishProject(String publisher, String publishTime, String projectName, String projectHash);

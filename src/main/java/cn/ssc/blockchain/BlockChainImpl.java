@@ -35,7 +35,7 @@ public class BlockChainImpl implements BlockChain{
             credentials =
                     WalletUtils.loadCredentials(
                             "123456789",
-                            "F:/keyfile");
+                            "E:/chain/whjKeyFile/keyfile");
             logger.info("credentials loaded");
         } catch (IOException e) {
             e.printStackTrace();
@@ -56,29 +56,30 @@ public class BlockChainImpl implements BlockChain{
         return balance;
     }
 
+    //
     @Override
     public BigInteger totalSupply() {
         return null;
     }
 
     @Override
-    public boolean adminDeleteTokenFrom(String from, BigInteger value) {
-        return false;
+    public String adminDeleteTokenFrom(String from, BigInteger value) {
+        return null;
     }
 
     @Override
-    public boolean adminAddTokenTo(String to, BigInteger value) {
-        return false;
+    public String adminAddTokenTo(String to, BigInteger value) {
+        return null;
     }
 
     @Override
-    public boolean adminTransfer(String from, String to, BigInteger value) {
-        return false;
+    public String adminTransfer(String from, String to, BigInteger value) {
+        return null;
     }
 
     @Override
-    public boolean adminSetBalanceOf(String who, BigInteger value) {
-        return false;
+    public String adminSetBalanceOf(String who, BigInteger value) {
+        return null;
     }
 
     @Override
