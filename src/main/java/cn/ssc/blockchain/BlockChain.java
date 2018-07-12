@@ -17,8 +17,8 @@ interface BlockChain {
     public BigInteger totalSupply()throws Exception;
 
     //token management
-    public String adminDeleteTokenFrom(String from, BigInteger value);
-    public String adminAddTokenTo(String to, BigInteger value);
+    public String adminDeleteTokenFrom(String from, BigInteger value) throws Exception;
+    public String adminAddTokenTo(String to, BigInteger value) throws Exception;
     public String adminTransfer(String from, String to, BigInteger value);
     public String adminSetBalanceOf(String who, BigInteger value) throws Exception;
 
