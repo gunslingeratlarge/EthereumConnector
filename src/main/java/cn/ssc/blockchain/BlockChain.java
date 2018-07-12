@@ -14,20 +14,20 @@ import java.math.BigInteger;
 interface BlockChain {
     //token information
     public BigInteger getBalanceOf(String who) throws Exception;
-    public BigInteger totalSupply()throws Exception;
+    public BigInteger totalSupply();
 
     //token management
-    public String adminDeleteTokenFrom(String from, BigInteger value)throws Exception;
-    public String adminAddTokenTo(String to, BigInteger value)throws Exception;
-    public String adminTransfer(String from, String to, BigInteger value)throws Exception;
-    public String adminSetBalanceOf(String who, BigInteger value);
+    public String adminDeleteTokenFrom(String from, BigInteger value);
+    public String adminAddTokenTo(String to, BigInteger value);
+    public String adminTransfer(String from, String to, BigInteger value);
+    public String adminSetBalanceOf(String who, BigInteger value) throws Exception;
 
-    //project
-    public String publishProject(String publisher, String publishTime, String projectName, String projectHash);
-    public String BuyProject(String buyer, String buyTime, String projectName, String projectHash);
+    //projects
+    public String publishProject(String publisher, String publishTime, String projectName, String projectHash) throws Exception;
+    public String BuyProject(String buyer, String buyTime, String projectName, String projectHash) throws Exception;
 
     //demands
-    public String publishDemand(String publisher, String publishTime, String demandName, String demandHash);
-    public String answerDemand(String answerer, String answerTime, String demandName, String answerHash);
+    public String publishDemand(String publisher, String publishTime, String demandName, String demandHash) throws Exception;
+    public String answerDemand(String answerer, String answerTime, String demandName, String answerHash) throws Exception;
 
 }

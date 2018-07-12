@@ -59,54 +59,51 @@ public class BlockChainImpl implements BlockChain{
 
     //
     @Override
-    public BigInteger totalSupply()throws Exception{
-        BigInteger totolSupply = contract.totalSupply().send();
-            return totolSupply;
-
-
+    public BigInteger totalSupply() {
+        return null;
     }
 
     @Override
-    public String adminDeleteTokenFrom(String from, BigInteger value)throws Exception{
-        TransactionReceipt result = contract.adminDeleteTokenFrom(from, value).send();
-        return result.getTransactionHash();
-
+    public String adminDeleteTokenFrom(String from, BigInteger value) {
+        return null;
     }
 
     @Override
-    public String adminAddTokenTo(String to, BigInteger value)throws Exception {
-        TransactionReceipt receipt = contract.adminAddTokenTo(to,value).send();
+    public String adminAddTokenTo(String to, BigInteger value) {
+        return null;
+    }
+
+    @Override
+    public String adminTransfer(String from, String to, BigInteger value) {
+        return null;
+    }
+
+    @Override
+    public String adminSetBalanceOf(String who, BigInteger value) throws Exception {
+        return contract.adminSetBalanceOf(who,value).send().getTransactionHash();
+    }
+
+    @Override
+    public String publishProject(String publisher, String publishTime, String projectName, String projectHash) throws Exception {
+        TransactionReceipt receipt = contract.publishProject(publisher, publishTime, projectName, projectHash).send();
+        return  receipt.getTransactionHash();
+    }
+
+    @Override
+    public String BuyProject(String buyer, String buyTime, String projectName, String projectHash) throws Exception {
+        TransactionReceipt receipt = contract.buyProject(buyer, buyTime, projectName, projectHash).send();
         return receipt.getTransactionHash();
     }
 
     @Override
-    public String adminTransfer(String from, String to, BigInteger value) throws Exception{
-        TransactionReceipt receipt = contract.adminTransfer(from, to, value).send();
+    public String publishDemand(String publisher, String publishTime, String demandName, String demandHash) throws Exception {
+          TransactionReceipt receipt = contract.publishDemand(publisher,publishTime, demandName, demandHash).send();
+          return receipt.getTransactionHash();
+    }
+
+    @Override
+    public String answerDemand(String answerer, String answerTime, String demandName, String answerHash) throws Exception {
+        TransactionReceipt receipt = contract.answerDemand(answerer, answerTime, demandName, answerHash).send();
         return receipt.getTransactionHash();
-    }
-
-    @Override
-    public String adminSetBalanceOf(String who, BigInteger value) {
-        return null;
-    }
-
-    @Override
-    public String publishProject(String publisher, String publishTime, String projectName, String projectHash) {
-        return null;
-    }
-
-    @Override
-    public String BuyProject(String buyer, String buyTime, String projectName, String projectHash) {
-        return null;
-    }
-
-    @Override
-    public String publishDemand(String publisher, String publishTime, String demandName, String demandHash) {
-        return null;
-    }
-
-    @Override
-    public String answerDemand(String answerer, String answerTime, String demandName, String answerHash) {
-        return null;
     }
 }
