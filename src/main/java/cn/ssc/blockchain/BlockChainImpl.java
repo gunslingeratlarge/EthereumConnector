@@ -65,13 +65,15 @@ public class BlockChainImpl implements BlockChain{
     }
 
     @Override
-    public String adminDeleteTokenFrom(String from, BigInteger value) {
-        return null;
+    public String adminDeleteTokenFrom(String from, BigInteger value)throws Exception {
+        TransactionReceipt receipt = contract.adminDeleteTokenFrom(from, value).send();
+        return receipt.getTransactionHash();
     }
 
     @Override
-    public String adminAddTokenTo(String to, BigInteger value) {
-        return null;
+    public String adminAddTokenTo(String to, BigInteger value) throws Exception {
+        String hash = contract.adminAddTokenTo(to, value).send().getTransactionHash();
+        return hash;
     }
 
     @Override
