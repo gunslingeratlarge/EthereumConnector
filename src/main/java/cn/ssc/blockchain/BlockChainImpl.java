@@ -7,6 +7,7 @@ import org.web3j.crypto.CipherException;
 import org.web3j.crypto.Credentials;
 import org.web3j.crypto.WalletUtils;
 import org.web3j.protocol.Web3j;
+import org.web3j.protocol.core.methods.response.TransactionReceipt;
 import org.web3j.protocol.http.HttpService;
 
 import java.io.IOException;
@@ -58,23 +59,30 @@ public class BlockChainImpl implements BlockChain{
 
     //
     @Override
-    public BigInteger totalSupply() {
-        return null;
+    public BigInteger totalSupply()throws Exception{
+        BigInteger totolSupply = contract.totalSupply().send();
+            return totolSupply;
+
+
     }
 
     @Override
-    public String adminDeleteTokenFrom(String from, BigInteger value) {
-        return null;
+    public String adminDeleteTokenFrom(String from, BigInteger value)throws Exception{
+        TransactionReceipt result = contract.adminDeleteTokenFrom(from, value).send();
+        return result.getTransactionHash();
+
     }
 
     @Override
-    public String adminAddTokenTo(String to, BigInteger value) {
-        return null;
+    public String adminAddTokenTo(String to, BigInteger value)throws Exception {
+        TransactionReceipt receipt = contract.adminAddTokenTo(to,value).send();
+        return receipt.getTransactionHash();
     }
 
     @Override
-    public String adminTransfer(String from, String to, BigInteger value) {
-        return null;
+    public String adminTransfer(String from, String to, BigInteger value) throws Exception{
+        TransactionReceipt receipt = contract.adminTransfer(from, to, value).send();
+        return receipt.getTransactionHash();
     }
 
     @Override
