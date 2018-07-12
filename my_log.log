@@ -1,0 +1,36 @@
+15:04:35.948[INFO ][main]cn.ssc.blockchain.BlockChainImpl - credentials loaded
+15:04:35.970[INFO ][main]cn.ssc.blockchain.BlockChainImpl - contract loaded
+15:04:36.017[DEBUG][main]org.web3j.protocol.http.HttpService - --> POST https://rinkeby.infura.io/w4Ys7tFaHr9YwlS1dqvB http/1.1
+15:04:36.017[DEBUG][main]org.web3j.protocol.http.HttpService - Content-Type: application/json; charset=utf-8
+15:04:36.017[DEBUG][main]org.web3j.protocol.http.HttpService - Content-Length: 252
+15:04:36.019[DEBUG][main]org.web3j.protocol.http.HttpService - 
+15:04:36.019[DEBUG][main]org.web3j.protocol.http.HttpService - {"jsonrpc":"2.0","method":"eth_call","params":[{"from":"0xb6060daeb3a0fd0afee80aed0e64126f3528150b","to":"0xc41Cc72eA84d117A096F938B807657722bD7738C","data":"0x70a08231000000000000000000000000b6060daeb3a0fd0afee80aed0e64126f3528150b"},"latest"],"id":0}
+15:04:36.020[DEBUG][main]org.web3j.protocol.http.HttpService - --> END POST (252-byte body)
+15:04:37.290[DEBUG][main]org.web3j.protocol.http.HttpService - <-- 200 OK https://rinkeby.infura.io/w4Ys7tFaHr9YwlS1dqvB (1269ms)
+15:04:37.290[DEBUG][main]org.web3j.protocol.http.HttpService - Date: Thu, 12 Jul 2018 07:04:36 GMT
+15:04:37.290[DEBUG][main]org.web3j.protocol.http.HttpService - Content-Type: application/json
+15:04:37.291[DEBUG][main]org.web3j.protocol.http.HttpService - Content-Length: 103
+15:04:37.291[DEBUG][main]org.web3j.protocol.http.HttpService - Connection: keep-alive
+15:04:37.291[DEBUG][main]org.web3j.protocol.http.HttpService - Vary: Origin
+15:04:37.292[DEBUG][main]org.web3j.protocol.http.HttpService - 
+15:04:37.292[DEBUG][main]org.web3j.protocol.http.HttpService - {"jsonrpc":"2.0","id":0,"result":"0x00000000000000000000000000000000000000000000000000000000000008f8"}
+
+15:04:37.292[DEBUG][main]org.web3j.protocol.http.HttpService - <-- END HTTP (103-byte body)
+15:05:23.154[INFO ][main]cn.ssc.blockchain.BlockChainImpl - credentials loaded
+15:05:23.172[INFO ][main]cn.ssc.blockchain.BlockChainImpl - contract loaded
+15:05:23.208[DEBUG][main]org.web3j.protocol.http.HttpService - --> POST https://rinkeby.infura.io/w4Ys7tFaHr9YwlS1dqvB http/1.1
+15:05:23.208[DEBUG][main]org.web3j.protocol.http.HttpService - Content-Type: application/json; charset=utf-8
+15:05:23.208[DEBUG][main]org.web3j.protocol.http.HttpService - Content-Length: 252
+15:05:23.208[DEBUG][main]org.web3j.protocol.http.HttpService - 
+15:05:23.209[DEBUG][main]org.web3j.protocol.http.HttpService - {"jsonrpc":"2.0","method":"eth_call","params":[{"from":"0xb6060daeb3a0fd0afee80aed0e64126f3528150b","to":"0xc41Cc72eA84d117A096F938B807657722bD7738C","data":"0x70a08231000000000000000000000000b6060daeb3a0fd0afee80aed0e64126f3528150b"},"latest"],"id":0}
+15:05:23.209[DEBUG][main]org.web3j.protocol.http.HttpService - --> END POST (252-byte body)
+15:05:24.438[DEBUG][main]org.web3j.protocol.http.HttpService - <-- 200 OK https://rinkeby.infura.io/w4Ys7tFaHr9YwlS1dqvB (1228ms)
+15:05:24.439[DEBUG][main]org.web3j.protocol.http.HttpService - Date: Thu, 12 Jul 2018 07:05:23 GMT
+15:05:24.439[DEBUG][main]org.web3j.protocol.http.HttpService - Content-Type: application/json
+15:05:24.439[DEBUG][main]org.web3j.protocol.http.HttpService - Content-Length: 103
+15:05:24.440[DEBUG][main]org.web3j.protocol.http.HttpService - Connection: keep-alive
+15:05:24.440[DEBUG][main]org.web3j.protocol.http.HttpService - Vary: Origin
+15:05:24.440[DEBUG][main]org.web3j.protocol.http.HttpService - 
+15:05:24.441[DEBUG][main]org.web3j.protocol.http.HttpService - {"jsonrpc":"2.0","id":0,"result":"0x00000000000000000000000000000000000000000000000000000000000008f8"}
+
+15:05:24.441[DEBUG][main]org.web3j.protocol.http.HttpService - <-- END HTTP (103-byte body)
