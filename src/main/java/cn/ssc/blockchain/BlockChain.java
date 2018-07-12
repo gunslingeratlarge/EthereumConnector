@@ -14,7 +14,7 @@ import java.math.BigInteger;
 interface BlockChain {
     //token information
     public BigInteger getBalanceOf(String who) throws Exception;
-    public BigInteger totalSupply();
+    public BigInteger totalSupply()throws Exception;
 
     //token management
     public String adminDeleteTokenFrom(String from, BigInteger value);

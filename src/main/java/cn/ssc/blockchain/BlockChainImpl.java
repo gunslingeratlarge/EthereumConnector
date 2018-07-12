@@ -59,8 +59,9 @@ public class BlockChainImpl implements BlockChain{
 
     //
     @Override
-    public BigInteger totalSupply() {
-        return null;
+    public BigInteger totalSupply() throws Exception{
+        BigInteger totalSupply = contract.totalSupply().send();
+        return totalSupply;
     }
 
     @Override
