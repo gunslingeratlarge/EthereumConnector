@@ -22,7 +22,7 @@ interface BlockChain {
     public String adminTransfer(String from, String to, BigInteger value)throws Exception;
     public String adminSetBalanceOf(String who, BigInteger value);
 
-    //projects
+    //project
     public String publishProject(String publisher, String publishTime, String projectName, String projectHash);
     public String BuyProject(String buyer, String buyTime, String projectName, String projectHash);
 
