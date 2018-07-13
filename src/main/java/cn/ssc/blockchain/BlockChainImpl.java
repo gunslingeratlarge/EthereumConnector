@@ -34,7 +34,7 @@ public class BlockChainImpl implements BlockChain{
     private DevToken contract;
     Logger logger = LoggerFactory.getLogger(getClass());
 
-    private Configuration config = new PropertiesConfiguration("classpath:config.properties");
+    private Configuration config = new PropertiesConfiguration("config.properties");
     public BlockChainImpl() throws ConfigurationException {
         web3 = Admin.build(new HttpService(config.getString("web3j_url")));
 
@@ -50,10 +50,10 @@ public class BlockChainImpl implements BlockChain{
         }
 
         String address = credentials.getAddress();
-
         contract = DevToken.load(config.getString("contractAddress"),
-                web3, credentials, config.getBigInteger("GAS_LIMIT"),
-                config.getBigInteger("GAS_PRICE"));
+                web3, credentials,new BigInteger(config.getString("GAS_PRICE")),
+                new BigInteger( config.getString("GAS_LIMIT"))
+               );
         logger.info("contract loaded");
     }
 
