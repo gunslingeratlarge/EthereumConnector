@@ -1,12 +1,11 @@
 package cn.ssc.blockchain.generated;
 
+import java.math.BigInteger;
 import org.web3j.crypto.Credentials;
 import org.web3j.protocol.Web3j;
 import org.web3j.protocol.core.RemoteCall;
 import org.web3j.tx.Contract;
 import org.web3j.tx.TransactionManager;
-
-import java.math.BigInteger;
 
 /**
  * <p>Auto generated code.
@@ -18,7 +17,7 @@ import java.math.BigInteger;
  * <p>Generated with web3j version 3.4.0.
  */
 public class SafeMath extends Contract {
-    private static final String BINARY = "604c602c600b82828239805160001a60731460008114601c57601e565bfe5b5030600052607381538281f30073000000000000000000000000000000000000000030146080604052600080fd00a165627a7a72305820e4bbd67dcaa0ba067a9955b26509286bc96b78e8c36467351ca7e1f12a8985240029";
+    private static final String BINARY = "604c602c600b82828239805160001a60731460008114601c57601e565bfe5b5030600052607381538281f30073000000000000000000000000000000000000000030146080604052600080fd00a165627a7a723058207399a2382326668ff53bf5a2ead9a38f4609959bc953aa9c4b9dea538068da0c0029";
 
     protected SafeMath(String contractAddress, Web3j web3j, Credentials credentials, BigInteger gasPrice, BigInteger gasLimit) {
         super(BINARY, contractAddress, web3j, credentials, gasPrice, gasLimit);
