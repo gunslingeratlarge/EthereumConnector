@@ -34,14 +34,14 @@ public class BlockChainImpl implements BlockChain{
     private DevToken contract;
     Logger logger = LoggerFactory.getLogger(getClass());
 
-    private Configuration config = new PropertiesConfiguration("classpath:config.properties");
+    private Configuration config = new PropertiesConfiguration("blockchain.properties");
     public BlockChainImpl() throws ConfigurationException {
-        web3 = Admin.build(new HttpService(config.getString("web3j_url")));
+        web3 = Admin.build(new HttpService(config.getString("web3j.url")));
 
     try {
             credentials = WalletUtils.loadCredentials(
-                    config.getString("password"),
-                    config.getString("source"));
+                    config.getString("owner.password"),
+                    config.getString("owner.keyfile"));
             logger.info("credentials loaded");
         } catch (IOException e) {
             e.printStackTrace();
@@ -49,18 +49,16 @@ public class BlockChainImpl implements BlockChain{
             e.printStackTrace();
         }
 
-        String address = credentials.getAddress();
-
-        contract = DevToken.load(config.getString("contractAddress"),
-                web3, credentials, config.getBigInteger("GAS_LIMIT"),
-                config.getBigInteger("GAS_PRICE"));
+        contract = DevToken.load(config.getString("contract.address"),
+                web3, credentials, config.getBigInteger("gas.price"),
+                config.getBigInteger("gas.limit"));
         logger.info("contract loaded");
     }
 
     @Override
     public BigInteger getBalanceOf(String who) throws Exception {
 
-        BigInteger balance = contract.balanceOf(config.getString("owner")).send();
+        BigInteger balance = contract.balanceOf(who).send();
         return balance;
     }
 
