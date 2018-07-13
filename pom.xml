@@ -42,6 +42,14 @@
       <artifactId>logback-classic</artifactId>
       <version>1.0.13</version>
     </dependency>
+
+    <!--读取配置文件的方式-->
+    <dependency>
+      <groupId>com.cedarsoft.commons</groupId>
+      <artifactId>configuration</artifactId>
+      <version>8.1.0</version>
+    </dependency>
+
   </dependencies>
 
   <build>
