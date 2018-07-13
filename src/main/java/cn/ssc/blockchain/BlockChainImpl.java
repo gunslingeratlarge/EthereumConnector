@@ -9,7 +9,8 @@ import org.slf4j.LoggerFactory;
 import org.web3j.crypto.CipherException;
 import org.web3j.crypto.Credentials;
 import org.web3j.crypto.WalletUtils;
-import org.web3j.protocol.Web3j;
+import org.web3j.protocol.admin.Admin;
+import org.web3j.protocol.admin.methods.response.NewAccountIdentifier;
 import org.web3j.protocol.core.methods.response.TransactionReceipt;
 import org.web3j.protocol.http.HttpService;
 
@@ -28,17 +29,16 @@ import java.util.Properties;
 
 
 public class BlockChainImpl implements BlockChain{
-    private Web3j web3;
+    private Admin web3;
     private Credentials credentials;
     private DevToken contract;
-    //public Configuration config;
     Logger logger = LoggerFactory.getLogger(getClass());
 
     private Configuration config = new PropertiesConfiguration("classpath:config.properties");
     public BlockChainImpl() throws ConfigurationException {
-        web3 = Web3j.build(new HttpService(config.getString("web3j_url")));
+        web3 = Admin.build(new HttpService(config.getString("web3j_url")));
 
-        try {
+    try {
             credentials = WalletUtils.loadCredentials(
                     config.getString("password"),
                     config.getString("source"));
@@ -84,8 +84,8 @@ public class BlockChainImpl implements BlockChain{
     }
 
     @Override
-    public String adminTransfer(String from, String to, BigInteger value) {
-        return null;
+    public String adminTransfer(String from, String to, BigInteger value) throws Exception {
+        return contract.adminTransfer(from,to,value).send().getTransactionHash();
     }
 
     @Override
@@ -115,5 +115,12 @@ public class BlockChainImpl implements BlockChain{
     public String answerDemand(String answerer, String answerTime, String demandName, String answerHash) throws Exception {
         TransactionReceipt receipt = contract.answerDemand(answerer, answerTime, demandName, answerHash).send();
         return receipt.getTransactionHash();
+    }
+
+    //add new user to blockchain
+    @Override
+    public String addUser() throws IOException {
+        NewAccountIdentifier identifier = web3.personalNewAccount(config.getString("password")).send();
+        return identifier.getAccountId();
     }
 }

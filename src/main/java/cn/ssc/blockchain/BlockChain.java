@@ -1,5 +1,6 @@
 package cn.ssc.blockchain;
 
+import java.io.IOException;
 import java.math.BigInteger;
 
 /**
@@ -19,7 +20,7 @@ interface BlockChain {
     //token management
     public String adminDeleteTokenFrom(String from, BigInteger value) throws Exception;
     public String adminAddTokenTo(String to, BigInteger value) throws Exception;
-    public String adminTransfer(String from, String to, BigInteger value);
+    public String adminTransfer(String from, String to, BigInteger value) throws Exception;
     public String adminSetBalanceOf(String who, BigInteger value) throws Exception;
 
     //projects
@@ -30,4 +31,6 @@ interface BlockChain {
     public String publishDemand(String publisher, String publishTime, String demandName, String demandHash) throws Exception;
     public String answerDemand(String answerer, String answerTime, String demandName, String answerHash) throws Exception;
 
+    //user
+    public String addUser() throws IOException;
 }
