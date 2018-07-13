@@ -25,12 +25,12 @@ interface BlockChain {
 
     //projects
     public String publishProject(String publisher, String publishTime, String projectName, String projectHash) throws Exception;
-    public String BuyProject(String buyer, String buyTime, String projectName, String projectHash) throws Exception;
+    public String buyProject(String buyer, String buyTime, String projectName, String projectHash) throws Exception;
 
     //demands
     public String publishDemand(String publisher, String publishTime, String demandName, String demandHash) throws Exception;
     public String answerDemand(String answerer, String answerTime, String demandName, String answerHash) throws Exception;
 
     //user
-    public String addUser() throws IOException;
+    public String addUser(String password) throws IOException;
 }

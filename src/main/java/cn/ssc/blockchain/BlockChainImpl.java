@@ -34,14 +34,14 @@ public class BlockChainImpl implements BlockChain{
     private DevToken contract;
     Logger logger = LoggerFactory.getLogger(getClass());
 
-    private Configuration config = new PropertiesConfiguration("config.properties");
+    private Configuration config = new PropertiesConfiguration("blockchain.properties");
     public BlockChainImpl() throws ConfigurationException {
-        web3 = Admin.build(new HttpService(config.getString("web3j_url")));
+        web3 = Admin.build(new HttpService(config.getString("web3j.url")));
 
     try {
             credentials = WalletUtils.loadCredentials(
-                    config.getString("password"),
-                    config.getString("source"));
+                    config.getString("owner.password"),
+                    config.getString("owner.keyfile"));
             logger.info("credentials loaded");
         } catch (IOException e) {
             e.printStackTrace();
@@ -50,17 +50,17 @@ public class BlockChainImpl implements BlockChain{
         }
 
         String address = credentials.getAddress();
-        contract = DevToken.load(config.getString("contractAddress"),
-                web3, credentials,new BigInteger(config.getString("GAS_PRICE")),
-                new BigInteger( config.getString("GAS_LIMIT"))
-               );
+        contract = DevToken.load(config.getString("contract.address"),
+                web3, credentials,
+                new BigInteger(config.getString("gas.price")),
+                new BigInteger(config.getString("gas.limit")));
         logger.info("contract loaded");
     }
 
     @Override
     public BigInteger getBalanceOf(String who) throws Exception {
 
-        BigInteger balance = contract.balanceOf(config.getString("owner")).send();
+        BigInteger balance = contract.balanceOf(who).send();
         return balance;
     }
 
@@ -100,7 +100,7 @@ public class BlockChainImpl implements BlockChain{
     }
 
     @Override
-    public String BuyProject(String buyer, String buyTime, String projectName, String projectHash) throws Exception {
+    public String buyProject(String buyer, String buyTime, String projectName, String projectHash) throws Exception {
         TransactionReceipt receipt = contract.buyProject(buyer, buyTime, projectName, projectHash).send();
         return receipt.getTransactionHash();
     }
@@ -119,8 +119,8 @@ public class BlockChainImpl implements BlockChain{
 
     //add new user to blockchain
     @Override
-    public String addUser() throws IOException {
-        NewAccountIdentifier identifier = web3.personalNewAccount(config.getString("password")).send();
+    public String addUser(String password) throws IOException {
+        NewAccountIdentifier identifier = web3.personalNewAccount(password).send();
         return identifier.getAccountId();
     }
 }
