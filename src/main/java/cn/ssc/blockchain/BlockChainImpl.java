@@ -49,9 +49,11 @@ public class BlockChainImpl implements BlockChain{
             e.printStackTrace();
         }
 
+        String address = credentials.getAddress();
         contract = DevToken.load(config.getString("contract.address"),
-                web3, credentials, config.getBigInteger("gas.price"),
-                config.getBigInteger("gas.limit"));
+                web3, credentials,
+                new BigInteger(config.getString("gas.price")),
+                new BigInteger(config.getString("gas.limit")));
         logger.info("contract loaded");
     }
 
@@ -98,7 +100,7 @@ public class BlockChainImpl implements BlockChain{
     }
 
     @Override
-    public String BuyProject(String buyer, String buyTime, String projectName, String projectHash) throws Exception {
+    public String buyProject(String buyer, String buyTime, String projectName, String projectHash) throws Exception {
         TransactionReceipt receipt = contract.buyProject(buyer, buyTime, projectName, projectHash).send();
         return receipt.getTransactionHash();
     }
@@ -117,8 +119,8 @@ public class BlockChainImpl implements BlockChain{
 
     //add new user to blockchain
     @Override
-    public String addUser() throws IOException {
-        NewAccountIdentifier identifier = web3.personalNewAccount(config.getString("password")).send();
+    public String addUser(String password) throws IOException {
+        NewAccountIdentifier identifier = web3.personalNewAccount(password).send();
         return identifier.getAccountId();
     }
 }
