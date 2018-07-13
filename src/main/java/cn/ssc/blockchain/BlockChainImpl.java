@@ -1,6 +1,9 @@
 package cn.ssc.blockchain;
 
 import cn.ssc.blockchain.generated.DevToken;
+import org.apache.commons.configuration.Configuration;
+import org.apache.commons.configuration.ConfigurationException;
+import org.apache.commons.configuration.PropertiesConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.web3j.crypto.CipherException;
@@ -13,6 +16,7 @@ import org.web3j.protocol.http.HttpService;
 
 import java.io.IOException;
 import java.math.BigInteger;
+import java.util.Properties;
 
 /**
  * @author Kvmial
@@ -25,20 +29,19 @@ import java.math.BigInteger;
 
 
 public class BlockChainImpl implements BlockChain{
-    public Admin web3;
-    public Credentials credentials;
-    public DevToken contract;
+    private Admin web3;
+    private Credentials credentials;
+    private DevToken contract;
     Logger logger = LoggerFactory.getLogger(getClass());
 
+    private Configuration config = new PropertiesConfiguration("classpath:config.properties");
+    public BlockChainImpl() throws ConfigurationException {
+        web3 = Admin.build(new HttpService(config.getString("web3j_url")));
 
-    public BlockChainImpl() {
- //     web3 = Admin.build(new HttpService("https://rinkeby.infura.io/w4Ys7tFaHr9YwlS1dqvB"));
-        web3 = Admin.build(new HttpService("http://127.0.0.1:8545"));
-        try {
-            credentials =
-                    WalletUtils.loadCredentials(
-                            "123456789",
-                            "F:/keyfile");
+    try {
+            credentials = WalletUtils.loadCredentials(
+                    config.getString("password"),
+                    config.getString("source"));
             logger.info("credentials loaded");
         } catch (IOException e) {
             e.printStackTrace();
@@ -48,14 +51,16 @@ public class BlockChainImpl implements BlockChain{
 
         String address = credentials.getAddress();
 
-        contract = DevToken.load("0xc41Cc72eA84d117A096F938B807657722bD7738C",
-                web3, credentials, BigInteger.valueOf(3_000_000_000L), BigInteger.valueOf(300000L));
+        contract = DevToken.load(config.getString("contractAddress"),
+                web3, credentials, config.getBigInteger("GAS_LIMIT"),
+                config.getBigInteger("GAS_PRICE"));
         logger.info("contract loaded");
     }
 
     @Override
     public BigInteger getBalanceOf(String who) throws Exception {
-        BigInteger balance = contract.balanceOf("0xb6060daeb3a0fD0AfEe80aED0e64126F3528150b").send();
+
+        BigInteger balance = contract.balanceOf(config.getString("owner")).send();
         return balance;
     }
 
@@ -115,7 +120,7 @@ public class BlockChainImpl implements BlockChain{
     //add new user to blockchain
     @Override
     public String addUser() throws IOException {
-        NewAccountIdentifier identifier = web3.personalNewAccount("123456789").send();
+        NewAccountIdentifier identifier = web3.personalNewAccount(config.getString("password")).send();
         return identifier.getAccountId();
     }
 }

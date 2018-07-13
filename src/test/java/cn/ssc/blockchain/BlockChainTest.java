@@ -1,5 +1,6 @@
 package cn.ssc.blockchain;
 
+import org.apache.commons.configuration.ConfigurationException;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -22,7 +23,7 @@ public class BlockChainTest {
    BlockChain bc;
    Logger logger = LoggerFactory.getLogger(getClass());
     @Before
-    public void init() {
+    public void init() throws ConfigurationException {
         bc = new BlockChainImpl();
     }
 
