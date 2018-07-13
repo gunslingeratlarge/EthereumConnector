@@ -1,5 +1,6 @@
 package cn.ssc.blockchain;
 
+import java.io.IOException;
 import java.math.BigInteger;
 
 /**
@@ -30,4 +31,6 @@ interface BlockChain {
     public String publishDemand(String publisher, String publishTime, String demandName, String demandHash) throws Exception;
     public String answerDemand(String answerer, String answerTime, String demandName, String answerHash) throws Exception;
 
+    //user
+    public String addUser() throws IOException;
 }

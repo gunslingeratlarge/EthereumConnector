@@ -6,7 +6,8 @@ import org.slf4j.LoggerFactory;
 import org.web3j.crypto.CipherException;
 import org.web3j.crypto.Credentials;
 import org.web3j.crypto.WalletUtils;
-import org.web3j.protocol.Web3j;
+import org.web3j.protocol.admin.Admin;
+import org.web3j.protocol.admin.methods.response.NewAccountIdentifier;
 import org.web3j.protocol.core.methods.response.TransactionReceipt;
 import org.web3j.protocol.http.HttpService;
 
@@ -24,19 +25,20 @@ import java.math.BigInteger;
 
 
 public class BlockChainImpl implements BlockChain{
-    public Web3j web3;
+    public Admin web3;
     public Credentials credentials;
     public DevToken contract;
     Logger logger = LoggerFactory.getLogger(getClass());
 
 
     public BlockChainImpl() {
-        web3 = Web3j.build(new HttpService("https://rinkeby.infura.io/w4Ys7tFaHr9YwlS1dqvB"));
+ //     web3 = Admin.build(new HttpService("https://rinkeby.infura.io/w4Ys7tFaHr9YwlS1dqvB"));
+        web3 = Admin.build(new HttpService("http://127.0.0.1:8545"));
         try {
             credentials =
                     WalletUtils.loadCredentials(
                             "123456789",
-                            "E:/chain/whjKeyFile/keyfile");
+                            "F:/keyfile");
             logger.info("credentials loaded");
         } catch (IOException e) {
             e.printStackTrace();
@@ -108,5 +110,12 @@ public class BlockChainImpl implements BlockChain{
     public String answerDemand(String answerer, String answerTime, String demandName, String answerHash) throws Exception {
         TransactionReceipt receipt = contract.answerDemand(answerer, answerTime, demandName, answerHash).send();
         return receipt.getTransactionHash();
+    }
+
+    //add new user to blockchain
+    @Override
+    public String addUser() throws IOException {
+        NewAccountIdentifier identifier = web3.personalNewAccount("123456789").send();
+        return identifier.getAccountId();
     }
 }
