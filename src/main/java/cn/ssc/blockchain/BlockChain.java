@@ -12,7 +12,7 @@ import java.math.BigInteger;
  * @date 2018/7/12 0012 下午 14:27
  */
 
-interface BlockChain {
+public interface BlockChain {
     //token information
     public BigInteger getBalanceOf(String who) throws Exception;
     public BigInteger totalSupply()throws Exception;

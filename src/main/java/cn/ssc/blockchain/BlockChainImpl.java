@@ -123,4 +123,6 @@ public class BlockChainImpl implements BlockChain{
         NewAccountIdentifier identifier = web3.personalNewAccount(password).send();
         return identifier.getAccountId();
     }
+
+
 }
