@@ -6,6 +6,7 @@ import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.web3j.crypto.Bip39Wallet;
 import org.web3j.crypto.CipherException;
 import org.web3j.crypto.Credentials;
 import org.web3j.crypto.WalletUtils;
@@ -13,7 +14,10 @@ import org.web3j.protocol.admin.Admin;
 import org.web3j.protocol.admin.methods.response.NewAccountIdentifier;
 import org.web3j.protocol.core.methods.response.TransactionReceipt;
 import org.web3j.protocol.http.HttpService;
+import org.web3j.tx.FastRawTransactionManager;
+import org.web3j.tx.response.PollingTransactionReceiptProcessor;
 
+import java.io.File;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.util.Properties;
@@ -54,6 +58,11 @@ public class BlockChainImpl implements BlockChain{
                 web3, credentials,
                 new BigInteger(config.getString("gas.price")),
                 new BigInteger(config.getString("gas.limit")));
+
+
+        FastRawTransactionManager fastRawTxMgr =new FastRawTransactionManager(web3, credentials, new PollingTransactionReceiptProcessor(web3, 6000, 60));
+        contract = DevToken.load(config.getString("contract.address"), web3, fastRawTxMgr, new BigInteger(config.getString("gas.price")), new BigInteger(config.getString("gas.limit")));
+
         logger.info("contract loaded");
     }
 
@@ -123,6 +132,21 @@ public class BlockChainImpl implements BlockChain{
         NewAccountIdentifier identifier = web3.personalNewAccount(password).send();
         return identifier.getAccountId();
     }
+
+    @Override
+    public String localAddUser(String password) throws CipherException, IOException {
+        String keyStoreDir = WalletUtils.getDefaultKeyDirectory();
+        System.out.println("生成keyStore文件的默认目录：" + keyStoreDir);
+        //通过密码及keystore目录生成钱包
+        Bip39Wallet wallet = WalletUtils.generateBip39Wallet(password, new File(keyStoreDir));
+        Credentials cd = WalletUtils.loadBip39Credentials(password,
+                wallet.getMnemonic());
+        //钱包地址
+        System.out.println(cd.getAddress());
+        return cd.getAddress();
+    }
+
+
 
 
 }

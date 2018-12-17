@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.web3j.crypto.CipherException;
 
 import java.io.IOException;
 import java.math.BigInteger;
@@ -84,7 +85,7 @@ public class BlockChainImplTest {
 
     @Test
     public void publishDemand() throws Exception {
-        String tx = bc.publishDemand("0xcf855242b880f4a92fc077b068f3c094c70f2c3f",
+        String tx = bc.publishDemand("0xbf4f9a6f9397280e0fd9c83521d17e1fc9ecdb3b",
                 "20180713",
                 "EthereumConnectorDemand",
                 "0xb6060daeb3a0fD0AfEe80aED0e64126F3528150b");
@@ -105,5 +106,10 @@ public class BlockChainImplTest {
     public void addUser() throws IOException {
         String user = bc.addUser("123456789");
         logger.debug("new user address: " + user);
+    }
+
+    @Test
+    public void localAdduser() throws IOException, CipherException {
+        bc.localAddUser("123456789");
     }
 }

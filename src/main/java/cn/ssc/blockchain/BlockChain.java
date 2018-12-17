@@ -1,5 +1,7 @@
 package cn.ssc.blockchain;
 
+import org.web3j.crypto.CipherException;
+
 import java.io.IOException;
 import java.math.BigInteger;
 
@@ -17,7 +19,7 @@ public interface BlockChain {
     public BigInteger getBalanceOf(String who) throws Exception;
     public BigInteger totalSupply()throws Exception;
 
-    //token management
+    //token manag  ment
     public String adminDeleteTokenFrom(String from, BigInteger value) throws Exception;
     public String adminAddTokenTo(String to, BigInteger value) throws Exception;
     public String adminTransfer(String from, String to, BigInteger value) throws Exception;
@@ -33,4 +35,5 @@ public interface BlockChain {
 
     //user
     public String addUser(String password) throws IOException;
+    public String localAddUser(String password) throws IOException, CipherException;
 }
