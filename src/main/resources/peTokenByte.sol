@@ -382,7 +382,7 @@ contract DevToken is PausableToken, BurnableToken {
   event BuyProject(address buyer,string time, string projectName, string projectHash);
   event PublishDemand(address publisher, string time, string demandName, string deamndHash);
   event AnswerDemand(address _answerer, string _time, string _demandName, string _answerHash);
-
+  event PublishProjectAndSendBP(address publisher,string time, string projectName, string projectHash,bytes bp);
 
   string public constant name = "DevToken";
   string public constant symbol = "DEV";
@@ -475,4 +475,12 @@ contract DevToken is PausableToken, BurnableToken {
     emit AnswerDemand(_answerer, _time, _demandName,_answerHash);
     return true;
   }
+
+
+  // 添加商业计划书
+  function publishProjectAndSendBP(address _publisher,string _time, string _projectName, string _projectHash,bytes _bp) external  returns(bool){
+    emit PublishProjectAndSendBP(_publisher,_time,_projectName,_projectHash,_bp);
+    return true;
+  }
+
 }

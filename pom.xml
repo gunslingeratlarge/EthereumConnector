@@ -89,13 +89,13 @@
           <artifactId>web3j-maven-plugin</artifactId>
           <version>0.3.1</version>
           <configuration>
-            <packageName>cn.ssc.blockchain.model</packageName>
-            <sourceDestination>src/main/java/generated</sourceDestination>
+            <packageName>generatedByte</packageName>
+            <sourceDestination>src/main/java/cn/ssc/blockchain</sourceDestination>
             <nativeJavaType>true</nativeJavaType>
             <soliditySourceFiles>
               <directory>src/main/resources</directory>
               <includes>
-                <include>**/*.sol</include>
+                <include>**/peTokenByte.sol</include>
               </includes>
             </soliditySourceFiles>
           </configuration>
